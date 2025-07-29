@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
-import * as expressValidator from 'express-validator';
+import { body, validationResult } from 'express-validator';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
@@ -39,10 +39,10 @@ function authenticate(req: express.Request, res: express.Response, next: express
 
 app.post(
   '/api/auth/register',
-  expressValidator.body('email').isEmail(),
-  expressValidator.body('password').isLength({ min: 6 }),
+  body('email').isEmail(),
+  body('password').isLength({ min: 6 }),
   async (req, res) => {
-    const errors = expressValidator.validationResult(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ message: 'Invalid data' });
     const { email, password } = req.body;
     try {
@@ -60,10 +60,10 @@ app.post(
 
 app.post(
   '/api/auth/login',
-  expressValidator.body('email').isEmail(),
-  expressValidator.body('password').notEmpty(),
+  body('email').isEmail(),
+  body('password').notEmpty(),
   async (req, res) => {
-    const errors = expressValidator.validationResult(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ message: 'Invalid data' });
     const { email, password } = req.body;
     try {
