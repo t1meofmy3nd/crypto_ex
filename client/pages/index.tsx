@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="text-black dark:text-white">
-      <section className="hero">
+      <section className="hero mb-12">
         <div>
           <h1 className="slogan">Покупайте крипту с минимальными комиссиями на CryptoX</h1>
           <div className="input-row">
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ marginTop: '2rem' }}>
+      <section className="mt-20">
         <h2 style={{ marginBottom: '0.5rem' }}>Мобильное приложение</h2>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <img src="/assets/logo.svg" alt="app" style={{ width: 150 }} />
@@ -73,7 +73,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section style={{ marginTop: '2rem' }}>
+      <section className="mt-20">
         <h2 style={{ marginBottom: '0.5rem' }}>Часто задаваемые вопросы</h2>
         <Card className="faq">
           <details>
@@ -95,7 +95,7 @@ export default function Home() {
         </Card>
       </section>
 
-      <section style={{ marginTop: '2rem', textAlign: 'center' }}>
+      <section className="mt-20" style={{ textAlign: 'center' }}>
         <h2>Начните зарабатывать сегодня</h2>
         <Link href="/register">
           <Button className="cta-register" style={{ fontSize: '1.25rem', padding: '0.75rem 2rem' }}>
@@ -104,7 +104,7 @@ export default function Home() {
         </Link>
       </section>
       
-      <section style={{ marginTop: '2rem' }}>
+      <section className="mt-20">
         <h2 style={{ marginBottom: '0.5rem' }}>График BTC/USDT</h2>
         <Card className="chart-wrapper">
           <Chart symbol="BINANCE:BTCUSDT" />

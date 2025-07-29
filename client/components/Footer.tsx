@@ -33,12 +33,6 @@ const ColumnTitle = styled.h4`
   font-size: 1rem;
 `;
 
-const Socials = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-`;
-
 const StyledLink = styled.a`
   color: #B7BDC6;
   text-decoration: none;
@@ -86,15 +80,20 @@ export default function Footer() {
             <ColumnTitle>Сообщество</ColumnTitle>
             <ul>
               <li><StyledLink href="#">Блог</StyledLink></li>
-              <li><StyledLink href="#">Телеграм</StyledLink></li>
-              <li><StyledLink href="#">Твиттер</StyledLink></li>
+              <li>
+                <img src="/assets/telegram.svg" alt="Telegram" width="16" height="16" style={{marginRight:'0.25rem',verticalAlign:'middle'}} />
+                <StyledLink href="#">Телеграм</StyledLink>
+              </li>
+              <li>
+                <img src="/assets/twitter.svg" alt="Twitter" width="16" height="16" style={{marginRight:'0.25rem',verticalAlign:'middle'}} />
+                <StyledLink href="#">Твиттер</StyledLink>
+              </li>
+              <li>
+                <img src="/assets/discord.svg" alt="Discord" width="16" height="16" style={{marginRight:'0.25rem',verticalAlign:'middle'}} />
+                <StyledLink href="#">Discord</StyledLink>
+              </li>
             </ul>
           </div>
-          <Socials>
-              <a href="#"><img src="/assets/telegram.svg" alt="Telegram" width="24" height="24"/></a>
-              <a href="#"><img src="/assets/twitter.svg" alt="Twitter" width="24" height="24"/></a>
-              <a href="#"><img src="/assets/discord.svg" alt="Discord" width="24" height="24"/></a>
-            </Socials>
         </Columns>
         <Bottom>© 2025 CryptoX</Bottom>
       </div>

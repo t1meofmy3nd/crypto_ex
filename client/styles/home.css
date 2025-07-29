@@ -10,6 +10,20 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 360px) {
+  .input-row {
+    flex-direction: column;
+  }
+  .icon-buttons img {
+    width: 100px;
+  }
+  .slogan {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+
 .slogan {
   font-size: 36px;
   line-height: 42px;
@@ -63,6 +77,8 @@
   background: var(--news-bg);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 .news-card ul {
@@ -104,6 +120,16 @@
   cursor: pointer;
   color: var(--text-color);
   list-style: none;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.faq summary::before {
+  content: '❓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-color);
 }
 
 .faq summary::after {
