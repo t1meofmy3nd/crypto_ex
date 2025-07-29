@@ -5,17 +5,12 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-const Button = ({ variant = 'primary', children, style, ...props }: Props) => {
-  const baseStyle: React.CSSProperties = {
-    padding: '0.5rem 1rem',
-    borderRadius: 4,
-    border: 'none',
-    cursor: 'pointer',
-    backgroundColor: variant === 'primary' ? 'var(--primary)' : 'var(--secondary)',
-    color: '#fff'
-  };
+const Button = ({ variant = 'primary', children, className, style, ...props }: Props) => {
+  const classes = ['btn'];
+  if (variant === 'secondary') classes.push('secondary');
+  if (className) classes.push(className);
   return (
-    <button {...props} style={{ ...baseStyle, ...(style || {}) }}>{children}</button>
+    <button {...props} className={classes.join(' ')} style={style}>{children}</button>
   );
 };
 

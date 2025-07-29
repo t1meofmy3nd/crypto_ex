@@ -1,77 +1,32 @@
 import Link from 'next/link';
-import styled from 'styled-components';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Chart from '../components/Chart';
 import { useMarkets } from '../hooks/useMarkets';
-
-const Hero = styled.section`
-  padding: 3rem 0;
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 2rem;
-  align-items: center;
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Slogan = styled.h1`
-  font-size: 2rem;
-  color: var(--primary);
-  margin: 0 0 1rem;
-`;
-
-const InputRow = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-`;
-
-const TextInput = styled.input`
-  flex: 1;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  color: var(--text);
-`;
-
-const IconButtons = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-`;
-
-const MarketsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
+import '../styles/home.css';
 
 export default function Home() {
   const { markets, isLoading } = useMarkets();
 
   return (
     <div>
-      <Hero>
+      <section className="hero">
         <div>
-          <Slogan>Покупайте крипту с минимальными комиссиями на CryptoX</Slogan>
-          <InputRow>
-            <TextInput placeholder="Эл. почта или номер телефона" />
+          <h1 className="slogan">Покупайте крипту с минимальными комиссиями на CryptoX</h1>
+          <div className="input-row">
+            <input className="text-input" placeholder="Эл. почта или номер телефона" />
             <Button>Начать</Button>
-          </InputRow>
-          <IconButtons>
+          </div>
+          <div className="icon-buttons">
             <Button style={{ padding: '0.25rem 0.5rem' }}>G</Button>
             <Button style={{ padding: '0.25rem 0.5rem' }}></Button>
-          </IconButtons>
+          </div>
         </div>
-        <MarketsWrapper>
+        <div className="markets-wrapper">
           <Card style={{ padding: 0 }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <th style={{ textAlign: 'left' }}>Пара</th>
                   <th>Цена</th>
                   <th>24ч %</th>
@@ -84,10 +39,10 @@ export default function Home() {
                   </tr>
                 )}
                 {markets?.map((m, idx) => (
-                  <tr key={idx} style={{ borderBottom: '1px solid var(--border)' }}>
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <td>{m.symbol.replace('USDT', '/USDT')}</td>
                     <td style={{ textAlign: 'right' }}>{m.price.toLocaleString()}</td>
-                    <td style={{ textAlign: 'right', color: m.change >= 0 ? 'var(--secondary)' : '#e53e3e' }}>{m.change.toFixed(2)}%</td>
+                    <td style={{ textAlign: 'right', color: m.change >= 0 ? 'var(--secondary-color)' : '#e53e3e' }}>{m.change.toFixed(2)}%</td>
                   </tr>
                 ))}
               </tbody>
@@ -100,8 +55,8 @@ export default function Home() {
               <li>Bitcoin достиг исторического максимума</li>
             </ul>
           </Card>
-        </MarketsWrapper>
-      </Hero>
+        </div>
+      </section>
 
       <section style={{ marginTop: '2rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>Мобильное приложение</h2>
