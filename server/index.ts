@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
-import { body, validationResult } from 'express-validator';
+import * as expressValidator from 'express-validator';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
@@ -39,10 +39,10 @@ function authenticate(req: express.Request, res: express.Response, next: express
 
 app.post(
   '/api/auth/register',
-  body('email').isEmail(),
-  body('password').isLength({ min: 6 }),
+  expressValidator.body('email').isEmail(),
+  expressValidator.body('password').isLength({ min: 6 }),
   async (req, res) => {
-    const errors = validationResult(req);
+    const errors = expressValidator.validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ message: 'Invalid data' });
     const { email, password } = req.body;
     try {
@@ -60,10 +60,10 @@ app.post(
 
 app.post(
   '/api/auth/login',
-  body('email').isEmail(),
-  body('password').notEmpty(),
+  expressValidator.body('email').isEmail(),
+  expressValidator.body('password').notEmpty(),
   async (req, res) => {
-    const errors = validationResult(req);
+    const errors = expressValidator.validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ message: 'Invalid data' });
     const { email, password } = req.body;
     try {
@@ -114,7 +114,7 @@ app.get('/api/admin/stats', async (_req, res) => {
 app.get('/api/coin/:id', async (req, res) => {
   try {
     const r = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${req.params.id}&vs_currencies=usd`);
-    const data = await r.json();
+    const data = (await r.json()) as Record<string, { usd: number }>;
     return res.json(data[req.params.id]);
   } catch (e) {
     console.error(e);
