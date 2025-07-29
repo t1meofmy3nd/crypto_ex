@@ -16,13 +16,15 @@ const TradeHistory = ({ symbol }: Props) => {
 
   useEffect(() => {
     // generate mock trades whenever the symbol changes
-    const gen = () =>
-      Array.from({ length: 20 }).map(() => ({
-        price: Number((Math.random() * 1000 + 1000).toFixed(2)),
-        amount: Number((Math.random() * 5).toFixed(3)),
-        side: Math.random() > 0.5 ? 'buy' : 'sell',
-        time: new Date().toLocaleTimeString(),
-      }));
+    const gen = (): Trade[] =>
+      Array.from({ length: 20 }).map(
+        (): Trade => ({
+          price: Number((Math.random() * 1000 + 1000).toFixed(2)),
+          amount: Number((Math.random() * 5).toFixed(3)),
+          side: Math.random() > 0.5 ? 'buy' : 'sell',
+          time: new Date().toLocaleTimeString(),
+        })
+      );
     setTrades(gen());
   }, [symbol]);
 
