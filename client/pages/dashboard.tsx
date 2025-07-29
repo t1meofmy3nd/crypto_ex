@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
-
-interface MarketTicker {
-  pair: string;
-  price: string;
-  change: string;
-  up: boolean;
-}
+import { useMarkets } from '../hooks/useMarkets';
 
 interface Tx {
   date: string;
@@ -18,36 +12,14 @@ interface Tx {
 }
 
 const DashboardPage = () => {
-  const [markets, setMarkets] = useState<MarketTicker[]>([]);
+  const { markets, isLoading } = useMarkets();
   const [showPortfolio, setShowPortfolio] = useState(true);
   const [showMarkets, setShowMarkets] = useState(true);
   const [showTransactions, setShowTransactions] = useState(true);
   const [showNews, setShowNews] = useState(true);
 
-  const fetchMarkets = async () => {
-    const pairs = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'XRPUSDT'];
-    const results: MarketTicker[] = [];
-    for (const symbol of pairs) {
-      try {
-        const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`);
-        const data = await res.json();
-        const price = parseFloat(data.lastPrice);
-        const pct = parseFloat(data.priceChangePercent);
-        results.push({
-          pair: symbol.replace('USDT', '/USDT'),
-          price: price.toLocaleString(),
-          change: `${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%`,
-          up: pct >= 0
-        });
-      } catch (err) {
-        results.push({ pair: symbol.replace('USDT', '/USDT'), price: '—', change: '—', up: true });
-      }
-    }
-    setMarkets(results);
-  };
 
   useEffect(() => {
-    fetchMarkets();
     const stored = localStorage.getItem('dashboardPrefs');
     if (stored) {
       try {
@@ -115,11 +87,16 @@ const DashboardPage = () => {
             </tr>
           </thead>
           <tbody>
-            {markets.map((m, idx) => (
+            {isLoading && (
+              <tr>
+                <td colSpan={3} style={{ textAlign: 'center' }}>Загрузка...</td>
+              </tr>
+            )}
+            {markets?.map((m, idx) => (
               <tr key={idx} style={{ borderBottom: '1px solid var(--border)' }}>
-                <td>{m.pair}</td>
-                <td style={{ textAlign: 'right' }}>{m.price}</td>
-                <td style={{ textAlign: 'right', color: m.up ? 'var(--secondary)' : '#e53e3e' }}>{m.change}</td>
+                <td>{m.symbol.replace('USDT', '/USDT')}</td>
+                <td style={{ textAlign: 'right' }}>{m.price.toLocaleString()}</td>
+                <td style={{ textAlign: 'right', color: m.change >= 0 ? 'var(--secondary)' : '#e53e3e' }}>{m.change.toFixed(2)}%</td>  
               </tr>
             ))}
           </tbody>

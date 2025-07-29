@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { apiFetch } from '../services/api';
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -8,7 +9,7 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     if (!email || !password || !confirmPassword) {
@@ -19,8 +20,15 @@ const RegisterPage = () => {
       setError('Пароли не совпадают');
       return;
     }
-    // Mock registration success
-    router.push('/login');
+    try {
+      await apiFetch('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      });
+      router.push('/login');
+    } catch (err: any) {
+      setError(err.message || 'Ошибка регистрации');
+    }
   };
 
   return (
