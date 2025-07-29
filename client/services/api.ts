@@ -1,20 +1,19 @@
-export async function apiFetch<T = any>(url: string, options: RequestInit = {}): Promise<T> {
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || '',
+  headers: { 'Content-Type': 'application/json' },
+});
+
+export async function apiFetch<T = any>(url: string, options: { method?: string; body?: any; headers?: any } = {}): Promise<T> {
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}${url}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(options.headers || {}),
-    },
-    ...options,
+  const res = await api.request<T>({
+    url,
+    method: options.method || (options.body ? 'post' : 'get'),
+    data: options.body ? JSON.parse(options.body) : undefined,
+    headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) },
   });
-  if (!res.ok) {
-    let message = 'Request failed';
-    try {
-      const data = await res.json();
-      message = data.message || message;
-    } catch {}
-    throw new Error(message);
-  }
-  return res.json();
+  return res.data;
 }
+
+export default api;

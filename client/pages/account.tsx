@@ -1,4 +1,5 @@
 import Card from '../components/ui/Card';
+import AuthGuard from '../components/AuthGuard';
 
 const AccountPage = () => {
   const user = { name: 'Satoshi Nakamoto', email: 'satoshi@example.com', verified: true };
@@ -44,4 +45,10 @@ const AccountPage = () => {
   );
 };
 
-export default AccountPage;
+export default function AccountGuardPage() {
+  return (
+    <AuthGuard>
+      <AccountPage />
+    </AuthGuard>
+  );
+}

@@ -3,14 +3,17 @@ import Chart from '../components/Chart';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import { useMarkets } from '../hooks/useMarkets';
+import { useCoinPrice } from '../hooks/useCoinPrice';
 
 export default function Home() {
   const { markets, isLoading } = useMarkets();
+  const { price } = useCoinPrice('bitcoin');
 
   return (
     <div>
       <section style={{ textAlign: 'center', padding: '2rem 0' }}>
         <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'var(--primary)' }}>Добро пожаловать на CryptoX</h1>
+        {price && <p>BTC/USDT: {price}</p>}
         <p style={{ marginBottom: '1rem' }}>Торгуйте криптовалютой с минимальными комиссиями и максимальными возможностями.</p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <Link href="/trade"><Button>Начать торговать</Button></Link>

@@ -1,5 +1,6 @@
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import AuthGuard from '../components/AuthGuard';
 
 const WalletPage = () => {
   const balances = [
@@ -39,4 +40,10 @@ const WalletPage = () => {
   );
 };
 
-export default WalletPage;
+export default function WalletGuardPage() {
+  return (
+    <AuthGuard>
+      <WalletPage />
+    </AuthGuard>
+  );
+}
