@@ -1,3 +1,5 @@
+import Card from '../components/ui/Card';
+
 const AccountPage = () => {
   const user = { name: 'Satoshi Nakamoto', email: 'satoshi@example.com', verified: true };
   const history = [
@@ -7,14 +9,14 @@ const AccountPage = () => {
   return (
     <div>
       <h1 style={{ marginBottom: '1rem' }}>Личный кабинет</h1>
-      <section style={{ marginBottom: '1rem' }}>
-        <h2 style={{ marginBottom: '0.5rem' }}>Информация о пользователе</h2>
+      <Card style={{ marginBottom: '1rem' }}>
+        <h2 style={{ marginTop: 0, marginBottom: '0.5rem' }}>Информация о пользователе</h2>
         <p><strong>Имя:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Верификация:</strong> {user.verified ? 'Пройдена' : 'Не пройдена'}</p>
-      </section>
-      <section>
-        <h2 style={{ marginBottom: '0.5rem' }}>История сделок</h2>
+      </Card>
+      <Card>
+        <h2 style={{ marginTop: 0, marginBottom: '0.5rem' }}>История сделок</h2>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
@@ -37,7 +39,7 @@ const AccountPage = () => {
             ))}
           </tbody>
         </table>
-      </section>
+      </Card>
     </div>
   );
 };

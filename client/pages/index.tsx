@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Chart from '../components/Chart';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 
 interface MarketTicker {
   pair: string;
@@ -43,37 +45,41 @@ export default function Home() {
   return (
     <div>
       <section style={{ textAlign: 'center', padding: '2rem 0' }}>
-        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: '#2b6cb0' }}>Добро пожаловать на CryptoX</h1>
+        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'var(--primary)' }}>Добро пожаловать на CryptoX</h1>
         <p style={{ marginBottom: '1rem' }}>Торгуйте криптовалютой с минимальными комиссиями и максимальными возможностями.</p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-          <Link href="/trade"><button style={{ padding: '0.75rem 1.5rem', backgroundColor: '#38a169', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Начать торговать</button></Link>
-          <Link href="/register"><button style={{ padding: '0.75rem 1.5rem', backgroundColor: '#2b6cb0', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Зарегистрироваться</button></Link>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <Link href="/trade"><Button>Начать торговать</Button></Link>
+          <Link href="/register"><Button variant="secondary">Зарегистрироваться</Button></Link>
         </div>
       </section>
       <section style={{ marginTop: '2rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>Топ рынков</h2>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-              <th style={{ textAlign: 'left' }}>Пара</th>
-              <th>Цена</th>
-              <th>24ч %</th>
-            </tr>
-          </thead>
-          <tbody>
-            {markets.map((m, idx) => (
-              <tr key={idx} style={{ borderBottom: '1px solid #f0f0f0' }}>
-                <td>{m.pair}</td>
-                <td style={{ textAlign: 'right' }}>{m.price}</td>
-                <td style={{ textAlign: 'right', color: m.up ? '#38a169' : '#e53e3e' }}>{m.change}</td>
+        <Card style={{ padding: 0 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <th style={{ textAlign: 'left' }}>Пара</th>
+                <th>Цена</th>
+                <th>24ч %</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+              </thead>
+            <tbody>
+              {markets.map((m, idx) => (
+                <tr key={idx} style={{ borderBottom: '1px solid var(--border)' }}>
+                  <td>{m.pair}</td>
+                  <td style={{ textAlign: 'right' }}>{m.price}</td>
+                  <td style={{ textAlign: 'right', color: m.up ? 'var(--secondary)' : '#e53e3e' }}>{m.change}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Card>
       </section>
       <section style={{ marginTop: '2rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>График BTC/USDT</h2>
-        <Chart symbol="BINANCE:BTCUSDT" />
+        <Card>
+          <Chart symbol="BINANCE:BTCUSDT" />
+        </Card>
       </section>
     </div>
   );

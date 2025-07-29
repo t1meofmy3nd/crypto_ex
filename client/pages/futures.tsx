@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Chart from '../components/Chart';
 import OrderBook from '../components/OrderBook';
 import OrderForm from '../components/OrderForm';
+import Card from '../components/ui/Card';
 
 const FuturesPage = () => {
   const [symbol, setSymbol] = useState('BTCUSDT');
@@ -31,18 +32,18 @@ const FuturesPage = () => {
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1rem' }}>
-        <div>
+        <Card>
           <Chart symbol={`BINANCE:${symbol}`} />
-        </div>
-        <div>
+        </Card>
+        <Card>
           <OrderBook symbol={symbol} />
-        </div>
+        </Card>
       </div>
-      <div style={{ marginTop: '1rem' }}>
+      <Card style={{ marginTop: '1rem' }}>
         <p>Маржинальный баланс: {balance.toLocaleString()} USDT</p>
         <p>Плечо: {leverage}x</p>
         <OrderForm symbol={symbol} />
-      </div>
+      </Card>
     </div>
   );
 };

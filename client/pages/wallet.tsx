@@ -1,3 +1,6 @@
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+
 const WalletPage = () => {
   const balances = [
     { coin: 'BTC', total: 0.12, available: 0.12 },
@@ -7,6 +10,7 @@ const WalletPage = () => {
   return (
     <div>
       <h1 style={{ marginBottom: '1rem' }}>Кошелек</h1>
+      <Card style={{ padding: 0 }}></Card>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
@@ -23,13 +27,14 @@ const WalletPage = () => {
               <td style={{ textAlign: 'right' }}>{b.total}</td>
               <td style={{ textAlign: 'right' }}>{b.available}</td>
               <td style={{ textAlign: 'right' }}>
-                <button style={{ marginRight: '0.5rem', padding: '0.25rem 0.5rem', border: '1px solid #cbd5e0', borderRadius: 4, cursor: 'pointer' }}>Пополнить</button>
-                <button style={{ padding: '0.25rem 0.5rem', border: '1px solid #cbd5e0', borderRadius: 4, cursor: 'pointer' }}>Вывести</button>
+                <Button style={{ marginRight: '0.5rem' }}>Пополнить</Button>
+                <Button variant="secondary">Вывести</Button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </Card>
     </div>
   );
 };
