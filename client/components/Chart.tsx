@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { HTMLAttributes, useEffect, useState } from 'react';
 
-interface ChartProps {
+interface ChartProps extends HTMLAttributes<HTMLDivElement> {
   symbol: string;
 }
 
-const Chart = ({ symbol }: ChartProps) => {
+const Chart = ({ symbol, className, style, ...rest }: ChartProps) => {
   const [iframeKey, setIframeKey] = useState(Date.now());
 
   const getTheme = () => {
@@ -29,7 +29,11 @@ const Chart = ({ symbol }: ChartProps) => {
   const src = `https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=60&symboledit=1&saveimage=0&toolbarbg=F1F3F6&hideideas=1&theme=${theme}&style=1&timezone=Etc/UTC&withdateranges=1&studies=%5B%5D&hide_side_toolbar=0&allow_symbol_change=1&details=0&hotlist=0&calendar=0`;
 
   return (
-    <div style={{ width: '100%', height: '400px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+    <div
+      className={className}
+      style={{ width: '100%', height: '400px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.5)', ...style }}
+      {...rest}
+    >
       <iframe
         key={iframeKey}
         title={`TradingView Chart ${symbol}`}

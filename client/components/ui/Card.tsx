@@ -1,12 +1,13 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  style?: React.CSSProperties;
 }
 
-const Card = ({ children, style }: Props) => (
-  <div className="card" style={style}>{children}</div>
+const Card = ({ children, className, style, ...rest }: Props) => (
+  <div className={`card ${className ?? ''}`} style={style} {...rest}>
+    {children}
+  </div>
 );
 
 export default Card;

@@ -13,6 +13,12 @@
  */
 
 import express from 'express';
+// The environment in the code runner lacks Node type definitions which normally
+// provide globals like `process` and `require`. Declare them here so that the
+// TypeScript compiler does not error when types are missing.
+declare const process: any;
+declare const require: any;
+declare const module: any;
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
