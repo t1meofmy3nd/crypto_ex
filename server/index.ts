@@ -5,10 +5,12 @@ import jwt from 'jsonwebtoken';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
-import { body, validationResult } from 'express-validator';
+import expressValidator from 'express-validator';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+
+const { body, validationResult } = expressValidator;
 
 dotenv.config();
 
