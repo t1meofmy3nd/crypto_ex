@@ -5,7 +5,7 @@ interface Props {
   onSelect: (s: string) => void;
 }
 
-const MarketPairs = ({ onSelect }: Props) => {
+const MarketPairsPanel = ({ onSelect }: Props) => {
   const { markets } = useMarkets();
   const [base, setBase] = useState('USDT');
   const bases = ['USDT', 'BTC', 'BUSD'];
@@ -40,4 +40,4 @@ const MarketPairs = ({ onSelect }: Props) => {
   );
 };
 
-export default MarketPairs;
+export default MarketPairsPanel;

@@ -11,7 +11,7 @@ interface Props {
   symbol: string;
 }
 
-const TradeHistory = ({ symbol }: Props) => {
+const RecentTrades = ({ symbol }: Props) => {
   const [trades, setTrades] = useState<Trade[]>([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const TradeHistory = ({ symbol }: Props) => {
         price: parseFloat(d.p),
         qty: parseFloat(d.q),
         side: d.m ? 'sell' : 'buy',
-        time: new Date(d.T).toLocaleTimeString()
+        time: new Date(d.T).toLocaleTimeString(),
       };
       setTrades((prev) => [t, ...prev].slice(0, 30));
     };
@@ -54,4 +54,4 @@ const TradeHistory = ({ symbol }: Props) => {
   );
 };
 
-export default TradeHistory;
+export default RecentTrades;

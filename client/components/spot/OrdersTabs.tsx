@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const tabs = ['Открытые ордера', 'История ордеров', 'История сделок', 'Средства', 'Боты'];
 
-const OpenOrdersTabs = () => {
+const OrdersTabs = () => {
   const [active, setActive] = useState(0);
   const { token } = useAuth();
 
@@ -26,7 +26,7 @@ const OpenOrdersTabs = () => {
               border: '1px solid var(--border-color)',
               borderRadius: 4,
               cursor: 'pointer',
-              fontSize: '0.9rem'
+              fontSize: '0.9rem',
             }}
           >
             {t}
@@ -38,4 +38,4 @@ const OpenOrdersTabs = () => {
   );
 };
 
-export default OpenOrdersTabs;
+export default OrdersTabs;
