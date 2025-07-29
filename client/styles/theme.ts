@@ -17,7 +17,7 @@ export const darkTheme: DefaultTheme = {
   colors: {
     text: '#FFFFFF',
     heading: '#FFFFFF',
-    accent: '#FCD535',
+    accent: '#1E5DF3',
     background: '#181A20',
     cardBg: '#2B3139',
     border: '#333333',

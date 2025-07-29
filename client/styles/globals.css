@@ -36,19 +36,17 @@ a:hover {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  background: var(--button-bg);
-  border: 1px solid var(--button-bg);
-  color: var(--button-text);
-  transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+  transition: transform 0.2s;
 }
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
 .btn.secondary {
   background: var(--card-bg);
   color: var(--text-color);
-  border-color: var(--border-color);
-}
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 5px var(--accent-color);
+  border: 1px solid var(--border-color);
 }
 .btn.secondary:hover {
   background: var(--card-bg);

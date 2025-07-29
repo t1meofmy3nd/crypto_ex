@@ -34,8 +34,8 @@ const Layout = ({ children }: LayoutProps) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <header style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)', padding: '0.5rem 1rem' }}>
-          <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ fontWeight: 600, fontSize: '1.2rem', color: 'var(--accent-color)' }}>CryptoX</div>
+          <div className="container text-black dark:text-white" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ fontWeight: 600, fontSize: '1.2rem', color: '#1E5DF3' }}>CryptoX</div>
             <nav style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link href="/">Главная</Link>
               <Link href="/dashboard">Дашборд</Link>
@@ -49,7 +49,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Button>
           </div>
         </header>
-        <main className="container" style={{ minHeight: 'calc(100vh - 140px)', paddingTop: '1rem' }}>
+       <main className="container text-black dark:text-white" style={{ minHeight: 'calc(100vh - 140px)', paddingTop: '1rem' }}>
           {children}
         </main>
         <Footer />

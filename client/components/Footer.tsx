@@ -29,7 +29,7 @@ const Columns = styled.div`
 // Title for each column, emphasised with primary colour.
 const ColumnTitle = styled.h4`
   margin: 0 0 0.5rem;
-  color: var(--accent-color);
+  color: #1E5DF3;
   font-size: 1rem;
 `;
 
@@ -56,7 +56,7 @@ const Bottom = styled.div`
 export default function Footer() {
   return (
     <FooterWrapper>
-      <div className="container">
+      <div className="container text-black dark:text-white">
         <Columns>
           <div>
             <ColumnTitle>О нас</ColumnTitle>

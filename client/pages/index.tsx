@@ -8,7 +8,7 @@ export default function Home() {
   const { markets, isLoading } = useMarkets();
 
   return (
-    <div>
+    <div className="text-black dark:text-white">
       <section className="hero">
         <div>
           <h1 className="slogan">Покупайте крипту с минимальными комиссиями на CryptoX</h1>
