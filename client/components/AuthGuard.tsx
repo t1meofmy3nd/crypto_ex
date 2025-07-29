@@ -1,9 +1,19 @@
-import useSWR from 'swr';
-import { apiFetch } from '../services/api';
+import { ReactNode, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-export function useCoinPrice(id: string) {
-  const { data, error } = useSWR(`/api/coin/${id}`, (url) => apiFetch(url), {
-    refreshInterval: 60000,
-  });
-  return { price: data?.usd as number | undefined, isLoading: !data && !error };
+interface AuthGuardProps {
+  children: ReactNode;
 }
+
+export const AuthGuard = ({ children }: AuthGuardProps) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    if (!token) {
+      router.replace('/login');
+    }
+  }, [router]);
+
+  return <>{children}</>;
+};
