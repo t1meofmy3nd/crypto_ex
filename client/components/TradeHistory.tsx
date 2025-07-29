@@ -1,41 +1,54 @@
-import { useState } from 'react';
-import Card from './ui/Card';
-import { useAuth } from '../context/AuthContext';
+import { useEffect, useState } from 'react';
 
-const tabs = ['Открытые ордера', 'История ордеров', 'История сделок', 'Средства'];
+interface Trade {
+  price: number;
+  amount: number;
+  side: 'buy' | 'sell';
+  time: string;
+}
 
-const TradeTabs = () => {
-  const [active, setActive] = useState(0);
-  const { token } = useAuth();
+interface Props {
+  symbol: string;
+}
 
-  if (!token) {
-    return <Card>Авторизуйтесь или Зарегистрируйтесь, чтобы начать торговать.</Card>;
-  }
+const TradeHistory = ({ symbol }: Props) => {
+  const [trades, setTrades] = useState<Trade[]>([]);
+
+  useEffect(() => {
+    // generate mock trades whenever the symbol changes
+    const gen = () =>
+      Array.from({ length: 20 }).map(() => ({
+        price: Number((Math.random() * 1000 + 1000).toFixed(2)),
+        amount: Number((Math.random() * 5).toFixed(3)),
+        side: Math.random() > 0.5 ? 'buy' : 'sell',
+        time: new Date().toLocaleTimeString(),
+      }));
+    setTrades(gen());
+  }, [symbol]);
 
   return (
-    <Card>
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
-        {tabs.map((t, idx) => (
-          <button
-            key={t}
-            onClick={() => setActive(idx)}
-            style={{
-              padding: '0.25rem 0.5rem',
-              background: active === idx ? 'var(--accent-color)' : 'var(--card-bg)',
-              color: active === idx ? '#fff' : 'var(--text-color)',
-              border: '1px solid var(--border-color)',
-              borderRadius: 4,
-              cursor: 'pointer',
-              fontSize: '0.9rem',
-            }}
-          >
-            {t}
-          </button>
-        ))}
-      </div>
-      <div style={{ minHeight: 80 }}>Пусто</div>
-    </Card>
+    <div>
+      <h3>История сделок</h3>
+      <table style={{ width: '100%', fontSize: '0.9rem' }}>
+        <thead>
+          <tr>
+            <th style={{ textAlign: 'left' }}>Время</th>
+            <th>Цена</th>
+            <th>Кол-во</th>
+          </tr>
+        </thead>
+        <tbody>
+          {trades.map((t, idx) => (
+            <tr key={idx} style={{ color: t.side === 'buy' ? '#38a169' : '#e53e3e' }}>
+              <td>{t.time}</td>
+              <td style={{ textAlign: 'right' }}>{t.price.toLocaleString()}</td>
+              <td style={{ textAlign: 'right' }}>{t.amount.toFixed(3)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
-export default TradeTabs;
+export default TradeHistory;
