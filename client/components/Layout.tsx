@@ -20,6 +20,9 @@ const Layout = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     localStorage.setItem('theme', dark ? 'dark' : 'light');
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('theme-change'));
+    }
   }, [dark]);
 
   const theme = dark ? darkTheme : lightTheme;

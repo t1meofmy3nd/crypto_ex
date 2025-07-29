@@ -29,6 +29,8 @@ const OrderBook = ({ symbol }: Props) => {
     setOrders([...bids.sort((a, b) => b.price - a.price), ...asks.sort((a, b) => a.price - b.price)]);
   }, [symbol]);
 
+  const maxAmount = orders.reduce((m, o) => Math.max(m, o.amount), 0);
+
   return (
     <div>
       <h3>Стакан ордеров</h3>
@@ -43,7 +45,19 @@ const OrderBook = ({ symbol }: Props) => {
         <tbody>
           {orders.map((o, idx) => (
             <tr key={idx} style={{ color: o.type === 'bid' ? '#38a169' : '#e53e3e' }}>
-              <td style={{ textTransform: 'capitalize' }}>{o.type}</td>
+              <td style={{ textTransform: 'capitalize', position: 'relative' }}>
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: `${(o.amount / maxAmount) * 100}%`,
+                    background: o.type === 'bid' ? 'rgba(56,161,105,0.2)' : 'rgba(229,62,62,0.2)',
+                  }}
+                />
+                <span style={{ position: 'relative', paddingLeft: '0.25rem' }}>{o.type}</span>
+              </td>
               <td style={{ textAlign: 'right' }}>{o.price.toLocaleString()}</td>
               <td style={{ textAlign: 'right' }}>{o.amount.toFixed(3)}</td>
             </tr>
