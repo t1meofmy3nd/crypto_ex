@@ -2,6 +2,7 @@ import { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Button from './ui/Button';
+import Footer from './Footer';
 
 interface LayoutProps {
   children: ReactNode;
@@ -51,9 +52,7 @@ const Layout = ({ children }: LayoutProps) => {
       <main className="container" style={{ minHeight: 'calc(100vh - 140px)', paddingTop: '1rem' }}>
         {children}
       </main>
-      <footer style={{ borderTop: '1px solid var(--border)', padding: '0.5rem 1rem', textAlign: 'center' }}>
-        © 2025 CryptoX. Все права защищены.
-      </footer>
+      <Footer />
     </>
   );
 };

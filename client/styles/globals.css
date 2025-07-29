@@ -9,12 +9,12 @@
 }
 
 .dark {
-  --bg: #1a202c;
-  --text: #edf2f7;
-  --primary: #63b3ed;
-  --secondary: #68d391;
-  --border: #2d3748;
-  --card-bg: #2d3748;
+  --bg: #0B0E11;
+  --text: #f1f1f1;
+  --primary: #f0b90b;
+  --secondary: #2bde73;
+  --border: #1d1f23;
+  --card-bg: #181a1e;
 }
 
 body {
@@ -45,4 +45,5 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
