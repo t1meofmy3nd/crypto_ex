@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from './ui/Button';
 
 interface Props {
   symbol: string;
@@ -23,8 +24,8 @@ const OrderForm = ({ symbol }: Props) => {
           <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} style={{ padding: '0.4rem', border: '1px solid #cbd5e0', borderRadius: 4 }} />
         </label>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button onClick={() => handleSubmit('buy')} style={{ flex: 1, padding: '0.5rem', backgroundColor: '#38a169', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Купить</button>
-          <button onClick={() => handleSubmit('sell')} style={{ flex: 1, padding: '0.5rem', backgroundColor: '#e53e3e', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Продать</button>
+          <Button style={{ flex: 1 }} onClick={() => handleSubmit('buy')}>Купить</Button>
+          <Button style={{ flex: 1 }} onClick={() => handleSubmit('sell')}>Продать</Button>
         </div>
       </div>
     </div>

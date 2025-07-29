@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from '../components/ui/Button';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -33,7 +34,7 @@ const LoginPage = () => {
           Пароль
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '0.5rem', border: '1px solid #cbd5e0', borderRadius: 4 }} />
         </label>
-        <button type="submit" style={{ padding: '0.75rem', backgroundColor: '#2b6cb0', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Войти</button>
+       <Button type="submit">Войти</Button>
       </form>
     </div>
   );

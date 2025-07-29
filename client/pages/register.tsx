@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { apiFetch } from '../services/api';
+import Button from '../components/ui/Button';
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -48,7 +49,7 @@ const RegisterPage = () => {
           Повторите пароль
           <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ width: '100%', padding: '0.5rem', border: '1px solid #cbd5e0', borderRadius: 4 }} />
         </label>
-        <button type="submit" style={{ padding: '0.75rem', backgroundColor: '#38a169', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Зарегистрироваться</button>
+        <Button type="submit">Зарегистрироваться</Button>
       </form>
     </div>
   );

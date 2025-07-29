@@ -7,15 +7,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({ variant = 'primary', children, className, style, ...props }: Props) => {
   const classes = ['btn'];
-  if (variant === 'primary') {
-    classes.push(
-      'bg-blue-600',
-      'text-white',
-      'hover:bg-blue-700',
-      'dark:bg-blue-600',
-      'dark:hover:bg-blue-700'
-    );
-  } else {
+  if (variant === 'secondary') {
     classes.push('secondary');
   }
   if (className) classes.push(className);

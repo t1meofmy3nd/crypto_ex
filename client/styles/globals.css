@@ -36,11 +36,15 @@ a:hover {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.2s;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .btn:hover {
   transform: scale(1.05);
+  background: #1544d4;
 }
 
 .btn.secondary {
