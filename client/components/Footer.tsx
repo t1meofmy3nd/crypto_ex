@@ -1,19 +1,38 @@
- font-size: 0.9rem;
+import styled from "styled-components";
+
+/**
+ * Footer component renders the application footer. It uses styled-components
+ * for styling rather than inline CSS. The previous implementation had
+ * incomplete CSS declarations at the top of the file (e.g. `font-size: 0.9rem;`)
+ * which caused the TypeScript compiler to error because it was not attached
+ * to any styled component. We define a FooterWrapper here along with other
+ * layout components to properly scope styling.
+ */
+
+// Wrapper element for the footer area. Uses a secondary background and padding.
+const FooterWrapper = styled.footer`
+  padding: 2rem 0;
+  background: var(--background-secondary);
+  color: var(--text);
+  font-size: 0.9rem;
 `;
 
+// Grid container to layout footer columns responsively.
 const Columns = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1.5rem;
   margin-bottom: 1rem;
 `;
 
+// Title for each column, emphasised with primary colour.
 const ColumnTitle = styled.h4`
   margin: 0 0 0.5rem;
   color: var(--primary);
   font-size: 1rem;
 `;
 
+// Bottom line section of the footer with a border and centred text.
 const Bottom = styled.div`
   text-align: center;
   margin-top: 1rem;

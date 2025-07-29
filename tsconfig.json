@@ -8,5 +8,8 @@
     "skipLibCheck": true
   },
   "include": ["server/**/*.ts", "tests/**/*.ts"],
-  "exclude": ["node_modules"]
+  // Exclude legacy server implementation that references missing modules. The
+  // application uses `server/index.ts` instead of `server/app.ts` and the
+  // latter is excluded to avoid TypeScript compilation errors.
+  "exclude": ["node_modules", "server/app.ts"]
 }
