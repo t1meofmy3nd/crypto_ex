@@ -9,9 +9,11 @@ import { body, validationResult } from 'express-validator';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import app from './app';
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3001;
 const prisma = new PrismaClient();
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,6 +25,10 @@ app.use(cors({ origin: CLIENT_URL.split(','), credentials: true }));
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(express.json());
 app.use(cookieParser());
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 
 function authenticate(req: express.Request, res: express.Response, next: express.NextFunction) {
   const authHeader = req.headers.authorization;
