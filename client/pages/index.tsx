@@ -16,9 +16,12 @@ export default function Home() {
             <input className="text-input" placeholder="Эл. почта или номер телефона" />
             <Button>Начать</Button>
           </div>
-          <div className="icon-buttons">
-            <Button style={{ padding: '0.25rem 0.5rem' }}>G</Button>
-            <Button style={{ padding: '0.25rem 0.5rem' }}></Button>
+          <div className="download">
+            <div className="icon-buttons">
+              <img src="/assets/appstore.svg" alt="App Store" width="120" />
+              <img src="/assets/googleplay.svg" alt="Google Play" width="120" />
+            </div>
+            <Button className="download-btn" variant="secondary">Скачать приложение</Button>
           </div>
         </div>
         <div className="markets-wrapper">
@@ -47,11 +50,12 @@ export default function Home() {
               </tbody>
             </table>
           </Card>
-          <Card>
+          <Card className="news-card">
             <h3 style={{ marginTop: 0 }}>Новости</h3>
             <ul>
-              <li>Новая версия платформы CryptoX</li>
-              <li>Bitcoin достиг исторического максимума</li>
+              <li><a href="#">Новая версия платформы CryptoX</a></li>
+              <li><a href="#">Bitcoin достиг исторического максимума</a></li>
+              <li><a href="#">Запуск мобильного приложения</a></li>
             </ul>
           </Card>
         </div>
@@ -71,30 +75,38 @@ export default function Home() {
       </section>
       <section style={{ marginTop: '2rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>Часто задаваемые вопросы</h2>
-        <Card>
+        <Card className="faq">
           <details>
-            <summary>Что такое криптовалютная биржа?</summary>
+            <summary>1. Что такое криптовалютная биржа?</summary>
             <p>Площадка для покупки и продажи цифровых активов.</p>
           </details>
           <details>
-            <summary>Как торговать на CryptoX?</summary>
+            <summary>2. Как торговать на CryptoX?</summary>
             <p>Создайте аккаунт, пополните баланс и выберите торговую пару.</p>
           </details>
           <details>
-            <summary>Как пополнить и вывести средства?</summary>
+            <summary>3. Как пополнить и вывести средства?</summary>
             <p>Перейдите в раздел "Кошелек" и следуйте инструкциям.</p>
+          </details>
+          <details>
+            <summary>4. Есть ли мобильное приложение?</summary>
+            <p>Да, приложения доступны в App Store и Google Play.</p>
           </details>
         </Card>
       </section>
 
       <section style={{ marginTop: '2rem', textAlign: 'center' }}>
         <h2>Начните зарабатывать сегодня</h2>
-        <Link href="/register"><Button style={{ fontSize: '1.25rem', padding: '0.75rem 2rem' }}>Зарегистрироваться</Button></Link>
+        <Link href="/register">
+          <Button className="cta-register" style={{ fontSize: '1.25rem', padding: '0.75rem 2rem' }}>
+            Зарегистрироваться
+          </Button>
+        </Link>
       </section>
       
       <section style={{ marginTop: '2rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>График BTC/USDT</h2>
-        <Card>
+        <Card className="chart-wrapper">
           <Chart symbol="BINANCE:BTCUSDT" />
         </Card>
       </section>

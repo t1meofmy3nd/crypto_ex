@@ -7,8 +7,11 @@ interface ChartProps {
 const Chart = ({ symbol }: ChartProps) => {
   const [iframeKey, setIframeKey] = useState(Date.now());
 
-  const getTheme = () =>
-    (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark') ? 'dark' : 'light';
+  const getTheme = () => {
+    if (typeof document === 'undefined') return 'light';
+    const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg-color').trim();
+    return bg === '#181A20' ? 'dark' : 'light';
+  };
 
   useEffect(() => {
     // Force re-render iframe when symbol or theme changes
@@ -26,7 +29,7 @@ const Chart = ({ symbol }: ChartProps) => {
   const src = `https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=60&symboledit=1&saveimage=0&toolbarbg=F1F3F6&hideideas=1&theme=${theme}&style=1&timezone=Etc/UTC&withdateranges=1&studies=%5B%5D&hide_side_toolbar=0&allow_symbol_change=1&details=0&hotlist=0&calendar=0`;
 
   return (
-    <div style={{ width: '100%', height: '400px' }}>
+    <div style={{ width: '100%', height: '400px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
       <iframe
         key={iframeKey}
         title={`TradingView Chart ${symbol}`}

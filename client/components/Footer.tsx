@@ -23,13 +23,26 @@ const Columns = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1.5rem;
   margin-bottom: 1rem;
+  text-align: left;
 `;
 
 // Title for each column, emphasised with primary colour.
 const ColumnTitle = styled.h4`
   margin: 0 0 0.5rem;
-  color: var(--primary);
+  color: var(--accent-color);
   font-size: 1rem;
+`;
+
+const Socials = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+`;
+
+const StyledLink = styled.a`
+  color: #B7BDC6;
+  text-decoration: none;
+  &:hover { color: #fff; }
 `;
 
 // Bottom line section of the footer with a border and centred text.
@@ -48,17 +61,17 @@ export default function Footer() {
           <div>
             <ColumnTitle>О нас</ColumnTitle>
             <ul>
-              <li><a href="#">Команда</a></li>
-              <li><a href="#">Вакансии</a></li>
-              <li><a href="#">Контакты</a></li>
+              <li><StyledLink href="#">Команда</StyledLink></li>
+              <li><StyledLink href="#">Вакансии</StyledLink></li>
+              <li><StyledLink href="#">Контакты</StyledLink></li>
             </ul>
           </div>
           <div>
             <ColumnTitle>Продукты</ColumnTitle>
             <ul>
-              <li><a href="#">Спот</a></li>
-              <li><a href="#">Фьючерсы</a></li>
-              <li><a href="#">Кошелек</a></li>
+              <li><StyledLink href="#">Спот</StyledLink></li>
+              <li><StyledLink href="#">Фьючерсы</StyledLink></li>
+              <li><StyledLink href="#">Кошелек</StyledLink></li>
             </ul>
           </div>
           <div>
@@ -72,11 +85,16 @@ export default function Footer() {
           <div>
             <ColumnTitle>Сообщество</ColumnTitle>
             <ul>
-              <li><a href="#">Блог</a></li>
-              <li><a href="#">Телеграм</a></li>
-              <li><a href="#">Твиттер</a></li>
+              <li><StyledLink href="#">Блог</StyledLink></li>
+              <li><StyledLink href="#">Телеграм</StyledLink></li>
+              <li><StyledLink href="#">Твиттер</StyledLink></li>
             </ul>
           </div>
+          <Socials>
+              <a href="#"><img src="/assets/telegram.svg" alt="Telegram" width="24" height="24"/></a>
+              <a href="#"><img src="/assets/twitter.svg" alt="Twitter" width="24" height="24"/></a>
+              <a href="#"><img src="/assets/discord.svg" alt="Discord" width="24" height="24"/></a>
+            </Socials>
         </Columns>
         <Bottom>© 2025 CryptoX</Bottom>
       </div>

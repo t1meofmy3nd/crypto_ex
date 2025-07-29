@@ -11,8 +11,10 @@
   }
 }
 .slogan {
-  font-size: 2rem;
-  color: var(--primary-color);
+  font-size: 36px;
+  line-height: 42px;
+  font-weight: 700;
+  color: var(--text-color);
   margin: 0 0 1rem;
 }
 .input-row {
@@ -28,14 +30,95 @@
   border: 1px solid var(--border-color);
   background: var(--input-bg);
   color: var(--text-color);
+  text-align: left;
 }
+.download {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .icon-buttons {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
+
+.download-btn {
+  align-self: flex-start;
+}
+
+.cta-register {
+  margin-top: 1rem;
+}
+
 .markets-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+}
+
+.news-card {
+  background: var(--news-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.news-card ul {
+  list-style: none;
+  padding-left: 0.5rem;
+}
+
+.news-card li {
+  padding: 0.25rem 0 0.25rem 1rem;
+  position: relative;
+}
+
+.news-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-color);
+  border-radius: 50%;
+}
+
+.news-card a {
+  color: #fff;
+}
+
+.news-card a:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 0;
+}
+
+.faq summary {
+  cursor: pointer;
+  color: var(--text-color);
+  list-style: none;
+}
+
+.faq summary::after {
+  content: '▾';
+  float: right;
+  transition: transform 0.3s;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.chart-wrapper {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);  
 }
