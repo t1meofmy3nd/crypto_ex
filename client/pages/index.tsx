@@ -3,7 +3,6 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Chart from '../components/Chart';
 import { useMarkets } from '../hooks/useMarkets';
-import '../styles/home.css';
 
 export default function Home() {
   const { markets, isLoading } = useMarkets();
